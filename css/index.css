@@ -180,6 +180,25 @@ object-fit: cover;
 margin-left: 30px
 }
 
+.peoplebuy__list-wrapper {
+  margin-bottom: 40px;
+}
+
+.thridHeading {
+  margin-bottom: 23px;
+}
+
+.detail__list > li {
+display: flex;
+color: #656565;
+font-size: 22px;
+font-family: Archivo;
+}
+
+.detail__list > li + li {
+  margin-top: 14px;
+}
+
 @media (min-width: 768px) {
   .showcase {
     padding-right: 68px;
@@ -230,6 +249,18 @@ margin-left: 30px
   .peoplebuy__list {
     justify-content: flex-start;
   }
+
+  .detail {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  
+  .detail__list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
 }
 
 @media (min-width: 1281px) {
@@ -238,3 +269,11 @@ margin-left: 30px
     padding-left: 0px;
   }
 }
+
+/* // divider */
+
+.divider {
+  height: 4px;
+  background-color: #E4E4E4;
+}
+

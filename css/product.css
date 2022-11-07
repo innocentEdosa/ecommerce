@@ -1,0 +1,154 @@
+/* product */
+
+.product {
+  padding: 51px 14px;
+}
+
+.headingWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.productHeading {
+  font-size: 18px;
+  font-family: Archivo;
+  font-weight: 700;
+  line-height: 20px;
+  color: var(--secondary-color);
+}
+
+.productHeading__emp {
+  font-weight: 400;
+  color: #9b9b9b;
+}
+
+.productBtn {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.desktop__sort {
+  display: none;
+}
+
+.productList {
+  display: flex;
+  flex-direction: column;
+  margin-top: 21px;
+}
+
+.productListItem {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 660px;
+}
+
+.productListItem + .productListItem {
+  margin-top: 32px;
+}
+
+.productImgWrapper {
+  height: 502px;
+  width: 100%;
+  position: relative;
+}
+
+.productImg {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.productCardBtn {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.productLabel {
+  display: block;
+  position: absolute;
+  font-family: Archivo;
+  top: 0;
+  left: 0;
+  padding: 8px 16px;
+  background-color: white;
+}
+
+.category {
+    color: #656565;
+    font-size: 22px;
+    line-height: 24px;
+    font-family: Archivo;
+    margin-top: 8px;
+}
+
+.title {
+   color: #000000;
+   font-size: 34px;
+   line-height: 37px;
+   font-weight: 700;
+   margin-bottom: 9px;
+   margin-top: 8px;
+   font-family: Archivo;
+}
+
+.price {
+    font-size: 29px;
+    color: #656565;
+    font-family: Archivo;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+@media (min-width: 768px) {
+  .productBtn {
+    display: none;
+  }
+
+  .desktop__sort {
+    display: flex;
+    align-items: center;
+  }
+
+  .desktop__sort > span {
+    font-size: 22px;
+    padding-left: 7px;
+    padding-right: 15px;
+    font-family: Archivo;
+    color: #9b9b9b;
+  }
+
+  .productList {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .productListItem:nth-child(3n + 2) {
+    margin-right: 48px;
+    margin-left: 48px;
+  }
+
+  .productListItem {
+    flex-shrink: 0;
+    margin-bottom: 32px;
+    max-width: calc(33.333% - 32px);
+  }
+
+  .productListItem + .productListItem {
+    margin-top: 0px;
+  }
+}
