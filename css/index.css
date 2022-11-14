@@ -50,7 +50,22 @@
   border: none;
   height: 32px;
   width: 32px;
+  position: relative;
 }
+
+.cartproduct_count {
+  position: absolute;
+  background-color: black;
+  color: white;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  bottom: -12px;
+  right: -10px;
+}
+
 
 .navigation__cartBtn > img {
   height: 100%;

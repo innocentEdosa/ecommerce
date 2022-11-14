@@ -6,6 +6,8 @@
 // As a user i should be able to login to the platform
 
 // As a user I should be able to see a list of products
+let cartArr = [];
+
 
 function showNewProducts(productsObj) {
   const list = document.getElementById("products");
@@ -13,6 +15,7 @@ function showNewProducts(productsObj) {
 
   for (let i = 0; i < productsObj.products.length; i++) {
     const product = productsObj.products[i];
+    const stringProduct = JSON.stringify(product)
     const productItem = document.createElement("li");
     productItem.classList.add("productListItem");
     productItem.innerHTML = ` <aside class="productImgWrapper">
@@ -20,7 +23,7 @@ function showNewProducts(productsObj) {
          Best Seller
        </div>
        <img class="productImg" src="${product.thumbnail}" />
-       <button  class="cartbtn productCardBtn"> Add to cart</button>
+       <button data-product='${stringProduct}'   class="cartbtn productCardBtn"> Add to cart</button>
     
      </aside>
     
@@ -54,9 +57,15 @@ function showCategories(categories) {
   }
 }
 
+function showProductsInCart() {
+   document.getElementById("cartproduct_count").innerText = cartArr.length; 
+}
+
 function addToCart(event) {
 const product = event.target.getAttribute("data-product");
-console.log(product)
+cartArr.push(product);
+window.localStorage.setItem('cart', JSON.stringify(cartArr))
+showProductsInCart()
 }
 
 function addEventToBtns() {
@@ -72,6 +81,8 @@ function showProducts(productsObj) {
 
     const product = productsObj.products[i];
 
+    const stringProduct = JSON.stringify(product)
+
     const productItem = document.createElement("li");
     productItem.classList.add("productListItem");
     productItem.innerHTML = ` <aside class="productImgWrapper">
@@ -79,7 +90,7 @@ function showProducts(productsObj) {
        Best Seller
      </div>
      <img class="productImg" src="${product.thumbnail}" />
-     <button data-product='${JSON.stringify(product)}' class="cartbtn productCardBtn"> Add to cart</button>
+     <button data-product='${stringProduct}' class="cartbtn productCardBtn"> Add to cart</button>
   
    </aside>
   
@@ -128,3 +139,16 @@ document
 
 getProducts();
 getCategories();
+
+
+// https://innocentsquestioner.herokuapp.com/api/v1/auth/signup
+
+// {
+//   "username": "ilegbinijieinnocent",
+//   "email": "ilegbinijie@gmail.com",
+//   "password": "Abcd123!@",
+//   "firstname": "yourfirstname",
+//   "lastname": "yourlastname",
+//   "othername": "johndoe",
+//   "phoneNumber": 7000000000
+// }
