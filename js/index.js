@@ -8,19 +8,19 @@
 // As a user I should be able to see a list of products
 
 function showNewProducts(productsObj) {
-    const list = document.getElementById("products");
-    list.innerHTML = ""
+  const list = document.getElementById("products");
+  list.innerHTML = "";
 
-    for(let i = 0; i < productsObj.products.length; i++) {
-      const product = productsObj.products[i];
-      const productItem = document.createElement("li");
-      productItem.classList.add("productListItem");
-      productItem.innerHTML = ` <aside class="productImgWrapper">
+  for (let i = 0; i < productsObj.products.length; i++) {
+    const product = productsObj.products[i];
+    const productItem = document.createElement("li");
+    productItem.classList.add("productListItem");
+    productItem.innerHTML = ` <aside class="productImgWrapper">
        <div class="productLabel">
          Best Seller
        </div>
        <img class="productImg" src="${product.thumbnail}" />
-       <button class="cartbtn productCardBtn"> Add to cart</button>
+       <button  class="cartbtn productCardBtn"> Add to cart</button>
     
      </aside>
     
@@ -29,36 +29,49 @@ function showNewProducts(productsObj) {
        <h2 class="title">${product.title}</h2>
        <span class="price">$${product.price}</span>
      </div>`;
-    
-      list.appendChild(productItem);
-    }
-  
-  
+
+    list.appendChild(productItem);
   }
-
-
-function filterProductByCategory () {
-const select = document.getElementById("category");
-const valueSelectedByUser = select.value;
-fetch(`https://dummyjson.com/products/category/${valueSelectedByUser}`).then(res => res.json()).then(products => {
-    showNewProducts(products)
-})
 }
 
+function filterProductByCategory() {
+  const select = document.getElementById("category");
+  const valueSelectedByUser = select.value;
+  fetch(`https://dummyjson.com/products/category/${valueSelectedByUser}`)
+    .then((res) => res.json())
+    .then((products) => {
+      showNewProducts(products);
+    });
+}
 
 function showCategories(categories) {
-    const select =  document.getElementById("category")
-    for(let i = 0; i < categories.length; i++) {
-        const option = document.createElement("option")
-        option.value = categories[i]
-        option.innerHTML = categories[i]
-        select.appendChild(option);
-    }
+  const select = document.getElementById("category");
+  for (let i = 0; i < categories.length; i++) {
+    const option = document.createElement("option");
+    option.value = categories[i];
+    option.innerHTML = categories[i];
+    select.appendChild(option);
+  }
+}
+
+function addToCart(event) {
+const product = event.target.getAttribute("data-product");
+console.log(product)
+}
+
+function addEventToBtns() {
+  const buttons = document.querySelectorAll('.cartbtn');
+  for(let i = 0; i < buttons.length; i++) { 
+    const button = buttons[i];
+    button.addEventListener("click", addToCart);
+  }
 }
 
 function showProducts(productsObj) {
-  for(let i = 0; i < productsObj.products.length; i++) {
+  for (let i = 0; i < productsObj.products.length; i++) {
+
     const product = productsObj.products[i];
+
     const productItem = document.createElement("li");
     productItem.classList.add("productListItem");
     productItem.innerHTML = ` <aside class="productImgWrapper">
@@ -66,7 +79,7 @@ function showProducts(productsObj) {
        Best Seller
      </div>
      <img class="productImg" src="${product.thumbnail}" />
-     <button class="cartbtn productCardBtn"> Add to cart</button>
+     <button data-product='${JSON.stringify(product)}' class="cartbtn productCardBtn"> Add to cart</button>
   
    </aside>
   
@@ -75,12 +88,12 @@ function showProducts(productsObj) {
      <h2 class="title">${product.title}</h2>
      <span class="price">$${product.price}</span>
    </div>`;
-  
+
     const list = document.getElementById("products");
     list.appendChild(productItem);
   }
 
-
+  addEventToBtns();
 }
 
 function getProducts() {
@@ -102,12 +115,16 @@ function getProducts() {
 }
 
 function getCategories() {
-    fetch("https://dummyjson.com/products/categories").then(res => res.json()).then((categories) => {
-        showCategories(categories)
-    })
+  fetch("https://dummyjson.com/products/categories")
+    .then((res) => res.json())
+    .then((categories) => {
+      showCategories(categories);
+    });
 }
 
-document.getElementById("category").addEventListener("change", filterProductByCategory)
+document
+  .getElementById("category")
+  .addEventListener("change", filterProductByCategory);
 
 getProducts();
 getCategories();
